@@ -1,5 +1,4 @@
 import React from 'react';
-import {useAppSelector} from '../../app/store';
 import {TodoDomainType} from './todolistsTypes';
 
 type TodolistType = {
