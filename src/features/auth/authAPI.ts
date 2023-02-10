@@ -1,11 +1,11 @@
 import instance from '../../common/constants/instance';
-import {ResponseType} from '../../common/constants/instance';
+import {ApiResponseType} from '../../common/constants/instance';
 import {AuthMeResponseType, LoginRequestType, LoginResponseType} from './authTypes';
 
 export const authAPI = {
-    me: () => instance.get<ResponseType<AuthMeResponseType>>('/auth/me'),
+    me: () => instance.get<ApiResponseType<AuthMeResponseType>>('/auth/me'),
 
-    login: (data: LoginRequestType) => instance.post<ResponseType<LoginResponseType>>('/auth/login', data),
+    login: (data: LoginRequestType) => instance.post<ApiResponseType<LoginResponseType>>('/auth/login', data),
 
-    logout: () => instance.delete<ResponseType>('/auth/login')
+    logout: () => instance.delete<ApiResponseType>('/auth/login')
 }

@@ -3,6 +3,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import * as yup from 'yup';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {LoginRequestType} from '../../features/auth/authTypes';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {loginTC} from '../../features/auth/authSlice';
+import {useAppDispatch} from '../../app/store';
+import {addTodoTC} from '../../features/Todolists/todolistsSlice';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -17,8 +24,22 @@ const style = {
 };
 const ModalWindow = (props: {open:boolean, isOpened: (open:boolean)=>void}) => {
 
+    const dispatch = useAppDispatch()
     const handleClose = () => {
         props.isOpened(false)
+    }
+
+    const schema = yup.object({
+        title: yup.string().max(30).required(),
+    }).required();
+
+    const {register, handleSubmit, watch, formState: {errors}} = useForm<{ title:string }>({
+        resolver: yupResolver(schema),
+        mode: 'onTouched'
+    });
+    const onSubmit: SubmitHandler<{ title: string }> = data => {
+        console.log(data);
+        dispatch(addTodoTC(data.title))
     }
 
     return (
@@ -30,8 +51,9 @@ const ModalWindow = (props: {open:boolean, isOpened: (open:boolean)=>void}) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <form>
-                        <input type="text"/>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <input  {...register('title')}/>
+                        <input type="submit"/>
                     </form>
                 </Box>
             </Modal>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export type ResponseType<D = {}> = {
+export type ApiResponseType<D = {}> = {
     data: D
     messages: string[],
     fieldsErrors: string[],

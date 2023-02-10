@@ -12,7 +12,7 @@ const SideBar = (props: SideBarType) => {
 
     return (
         <div className={s.container}>
-            {props.todos.map(t=>{
+            {props.todos.map((t,i)=>{
                 // return <NavLink className={s.link} key={t.id} to={t.title}>{t.title}</NavLink>
                 return <NavLink className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : s.link)} key={t.id} to={t.title}>{t.title}</NavLink>
             })}
