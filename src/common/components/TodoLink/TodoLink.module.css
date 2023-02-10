@@ -1,0 +1,23 @@
+.link {
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    transition: color 1s ease-out 100ms
+}
+
+.link:first-child {
+    padding-top: 20px;
+}
+
+.link:hover {
+    color: #0e5b0f;
+    transform: scale(120%);
+    font-weight: bold;
+}
+
+.active {
+    color: #0e5b0f;
+    font-weight: bold;
+    font-size: 25px;
+}
