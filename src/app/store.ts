@@ -2,10 +2,12 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import appReducer from './appSlice';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import authReducer from '../features/auth/authSlice';
+import todolistsReducer from '../features/Todolists/todolistsSlice';
 
 const reducer = combineReducers({
     app: appReducer,
-    auth: authReducer
+    auth: authReducer,
+    todolists: todolistsReducer
 })
 
 export const store= configureStore({
